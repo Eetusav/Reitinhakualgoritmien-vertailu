@@ -16,12 +16,17 @@ Pääasiallisena lähteenä käytetään Tietorakenteet ja algoritmit-kurssin ma
 * Floyd-Warshall tarjoaa laajemman soveltuvuuden sillä se toimii myös negatiivisilla kaarilla ja etsii aina lyhimmän polun kaikille verkon solmuille.
 * Oletuksena on, että verkko ei sisällä negatiivisia syklejä
 
+## Toimintaidea lyhyesti (1, kalvo 546)
+* Algoritmi hajoittaa ongelman pienempiin osaongelmiin ja laskee välituloksenaan etäisyysmatriiseja D0, D1,..., Dn.
+* Matriisin Dk alkio Dk(i,j) pitää yllä tietoa siitä mikä on solmujen i, j lyhin etäisyys, jos niitä yhdistävä polku käyttää ainoastaan solmuja 1,2,3,...,k.
+* Matriisi Dn kertoo halutun lopputuloksen kaikille solmuille i,j joukossa V
+
 ## Dijkstra 
 * Dijkstran algoritmi tarjoaa nopeamman aikavaativuuden, mutta löytää vain lyhimmän polun lähtösolmusta
 * Ei toimi negatiivisilla kaarilla
-* Dijkstraa voi kutsua myös kaikille verkon solmuille, mutta aikavaativuus on Floyd-Warshallia hitaampi
+* Dijkstraa voi kutsua myös kaikille verkon solmuille, mutta aikavaativuus on Floyd-Warshallia hitaampi (tiheillä verkoilla)
 
-### Toimintaidea (1, kalvo 527)
+### Toimintaidea lyhyesti (1, kalvo 527)
 * Dijkstran algoritmi pitää yllä joukkoa S, joka muodostuu solmiosta joiden lyhin etäisyys solmuun s on jo selvitetty
 * Algoritmi valitsee toistuvasti solmun u joukosta V\S, jonka etäisyysarvio solmuun s on pienin
   * Valittu solmu u lisätään joukkoon S, ja

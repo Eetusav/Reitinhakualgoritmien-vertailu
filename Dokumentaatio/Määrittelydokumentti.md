@@ -1,4 +1,4 @@
-# Määrittelydokumentti
+﻿# Määrittelydokumentti
 Tiralabra 2018
 
 Tavoitteena on vertailla paria reitinhakualgoritmia ja tutkia minkäläisia eroja algoritmien ajankulutuksella on. Nyt on valittu 
@@ -16,7 +16,7 @@ Pääasiallisena lähteenä käytetään Tietorakenteet ja algoritmit-kurssin ma
 * Floyd-Warshall tarjoaa laajemman soveltuvuuden sillä se toimii myös negatiivisilla kaarilla ja etsii aina lyhimmän polun kaikille verkon solmuille.
 * Oletuksena on, että verkko ei sisällä negatiivisia syklejä
 
-## Toimintaidea lyhyesti (1, kalvo 546)
+### Toimintaidea lyhyesti (1, kalvo 546)
 * Algoritmi hajoittaa ongelman pienempiin osaongelmiin ja laskee välituloksenaan etäisyysmatriiseja D0, D1,..., Dn.
 * Matriisin Dk alkio Dk(i,j) pitää yllä tietoa siitä mikä on solmujen i, j lyhin etäisyys, jos niitä yhdistävä polku käyttää ainoastaan solmuja 1,2,3,...,k.
 * Matriisi Dn kertoo halutun lopputuloksen kaikille solmuille i,j joukossa V

@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Solmu on olio, jolla on nimi ja etäisyys. Solmu voi kaarien avulla olla
+ * linkitettynä muihin solmuihin. Linkitettyjä solmuja kutsutaan
+ * vierussolmuiksi.
  *
  * @author Matti
  */
@@ -20,20 +23,32 @@ public class Solmu {
     //TODO: tietorakenne linkedlist
     private List<Solmu> lyhinPolku = new LinkedList<>();
     private Integer etaisyys;
+    private Solmu next;
 
-    Map<Solmu, Integer> vierusSolmut = new HashMap<>();
+    MyHashMap<Solmu, Integer> vierusSolmut= new MyHashMap<>();;
 
-    //Alustetaan etäisyydeksi "ääretön", niinkuin tiran muistiinpanoissa.
+    /**
+     * Alustetaan etäisyydeksi "ääretön", niinkuin tiran muistiinpanoissa.
+     *
+     * @param nimi Solmun nimi.
+     */
     public Solmu(String nimi) {
         this.nimi = nimi;
         this.etaisyys = Integer.MAX_VALUE;
+        this.next = null;
     }
 
+    /**
+     * Lisää solmulle vierussolmun.
+     *
+     * @param vierusSolmu vierussolmu
+     * @param etaisyys etäisyys solmusta vierussolmuun.
+     */
     public void lisaaVierussolmu(Solmu vierusSolmu, int etaisyys) {
         vierusSolmut.put(vierusSolmu, etaisyys);
     }
 
-    public Map<Solmu, Integer> getVierusSolmut() {
+    public MyHashMap<Solmu, Integer> getVierusSolmut() {
         return this.vierusSolmut;
     }
 
@@ -45,6 +60,11 @@ public class Solmu {
         return this.nimi;
     }
 
+    /**
+     * Asettaa solmulle uuden lyhimmän polun.
+     *
+     * @param lyhinPolku
+     */
     public void setLyhinPolku(List<Solmu> lyhinPolku) {
         this.lyhinPolku = lyhinPolku;
     }
@@ -59,6 +79,23 @@ public class Solmu {
 
     public Integer getEtaisyys() {
         return this.etaisyys;
+    }
+    public Solmu getNext(){
+        return this.next;
+    }
+    public void setNext(Solmu next){
+        this.next = next;
+    }
+
+    @Override
+    public int hashCode() {
+        return getNimi().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Solmu
+                && getNimi().equals(((Solmu) obj).getNimi());
     }
 
 }

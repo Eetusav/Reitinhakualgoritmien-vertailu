@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static reitinhakualgoritmien.vertailu.FloydWarshall.floydWarshall;
 
 /**
  *
@@ -42,6 +43,26 @@ public class FloydWarshallTest {
     //
     @Test
     public void hello() {
-        assertEquals("1", "1");
+        int[][] t = new int[5][5];
+        for (int i = 0 ; i < t.length ; i++){
+            for (int j = 0 ; j < t.length ; j++){
+                t[i][j] = 0;
+            }
+        }
+        t[0][1] = 21;
+        t[0][2] = 14;
+        t[1][3] = 15;
+        t[1][5] = 12;
+        t[2][7] = 7;
+        t[3][4] = 4;
+        t[3][5] = 8;
+        t[5][4] = 10;
+        floydWarshall(t);
+        for (int i = 0 ; i < t.length ; i++){
+            for (int j = 0 ; j < t.length ; j++){
+                System.out.print(t[i][j]);
+            }
+            System.out.println("");
+        }
     }
 }

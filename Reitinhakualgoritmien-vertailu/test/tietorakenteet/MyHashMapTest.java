@@ -73,6 +73,17 @@ public class MyHashMapTest {
     }
     @Test
     public void hashMapEntrySetToimii(){
-        assertEquals("1", "1");
+        MyHashMap<String, Solmu> myHashMap = new MyHashMap<>();
+        Solmu a = new Solmu("a");
+        a.setEtaisyys(14);
+        Solmu b = new Solmu("b");
+        b.setEtaisyys(123);
+        myHashMap.put("a",a);
+        myHashMap.put("b", b);
+        MyEntry<String, Solmu>[] t = myHashMap.entrySet();
+        assertEquals(t[0].getValue(),a);
+        assertEquals(t[1].getValue(),b);
+        
     }
+
 }

@@ -5,19 +5,10 @@
  */
 package tietorakenteet;
 
-
 /**
  *
  * @author Matti
  */
-public class Verkko {
+public class MyLinkedList<Solmu> {
     
-    private MyHashSet solmut = new MyHashSet();
-    
-    public void lisaaSolmu(Solmu solmu){
-        solmut.add(solmu);
-    }
-    public Solmu[] getSolmut(){
-        return this.solmut.getSolmut();
-    }
 }

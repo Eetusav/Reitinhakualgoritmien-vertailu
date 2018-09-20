@@ -41,7 +41,7 @@ public class MyHashMapTest {
     }
 
     @Test
-    public void putJaGetMetoditToimii() {
+    public void putAndGetWorks() {
         MyHashMap<String, Solmu> myHashMap = new MyHashMap<>();
         Solmu a = new Solmu("a");
         a.setEtaisyys(14);
@@ -60,7 +60,7 @@ public class MyHashMapTest {
     }
 
     @Test
-    public void putMetodinYlikirjoitusToimii() {
+    public void putOverwritingWorks() {
         MyHashMap<String, Solmu> myHashMap = new MyHashMap<>();
         Solmu a = new Solmu("a");
         a.setEtaisyys(14);
@@ -72,7 +72,7 @@ public class MyHashMapTest {
         assertEquals(myHashMap.get("a").getEtaisyys(), (Integer) 123);
     }
     @Test
-    public void hashMapEntrySetToimii(){
+    public void hashMapEntrySetWorks(){
         MyHashMap<String, Solmu> myHashMap = new MyHashMap<>();
         Solmu a = new Solmu("a");
         a.setEtaisyys(14);

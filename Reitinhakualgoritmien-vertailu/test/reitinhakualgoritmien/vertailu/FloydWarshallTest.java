@@ -42,27 +42,28 @@ public class FloydWarshallTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void hello() {
-        int[][] t = new int[5][5];
+    public void testaaAlgoaPienellaVerkolla() {
+        int[][] t = new int[6][6];
         for (int i = 0 ; i < t.length ; i++){
             for (int j = 0 ; j < t.length ; j++){
-                t[i][j] = 0;
+                t[i][j] = 9999;
             }
         }
         t[0][1] = 21;
         t[0][2] = 14;
         t[1][3] = 15;
         t[1][5] = 12;
-        t[2][7] = 7;
+        t[2][4] = 7;
         t[3][4] = 4;
         t[3][5] = 8;
         t[5][4] = 10;
-        floydWarshall(t);
-        for (int i = 0 ; i < t.length ; i++){
-            for (int j = 0 ; j < t.length ; j++){
-                System.out.print(t[i][j]);
-            }
-            System.out.println("");
-        }
+        t = floydWarshall(t);
+        assertEquals(t[0][1], 21);
+        assertEquals(t[0][3], 36);
+        assertEquals(t[1][5], 12);
+        assertEquals(t[2][4], 7);
+        assertEquals(t[0][5], 33);
+        assertEquals(t[3][4], 4);
+        assertEquals(t[3][5], 8);
     }
 }

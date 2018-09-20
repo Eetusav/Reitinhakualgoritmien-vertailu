@@ -11,7 +11,7 @@ package reitinhakualgoritmien.vertailu;
  */
 public class FloydWarshall {
     
-    public static void floydWarshall(int verkko[][]){
+    public static int[][] floydWarshall(int verkko[][]){
         int etaisyys[][] = new int[verkko.length][verkko.length];
         
         for (int i = 0 ; i < verkko.length ; i++){
@@ -22,6 +22,7 @@ public class FloydWarshall {
                 else {
                     etaisyys[i][j] = verkko[i][j];
                 }
+//                etaisyys[i][j] = verkko[i][j];
             }
         }
         
@@ -35,5 +36,6 @@ public class FloydWarshall {
             }
         }
         
+        return etaisyys;
     }
 }

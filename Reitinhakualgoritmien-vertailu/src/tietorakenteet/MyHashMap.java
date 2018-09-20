@@ -90,7 +90,7 @@ public class MyHashMap<Key, Value> {
     public MyEntry<Key, Value>[] entrySet() {
         MyEntry<Key, Value>[] pal;
         // TODO: sizing problem
-        pal = new MyEntry[200];
+        pal = new MyEntry[2 + currentSize];
 //        System.out.println(currentSize);
         int toIndex = 0;
         for (int i = 0; i < buckets.length; i++) {

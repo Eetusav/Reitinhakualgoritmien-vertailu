@@ -21,7 +21,7 @@ public class Solmu {
 
     private String nimi;
     //TODO: tietorakenne linkedlist
-    private List<Solmu> lyhinPolku = new LinkedList<>();
+    private MyLinkedList lyhinPolku = new MyLinkedList();
     private Integer etaisyys;
     private Solmu next;
 
@@ -36,6 +36,7 @@ public class Solmu {
         this.nimi = nimi;
         this.etaisyys = Integer.MAX_VALUE;
         this.next = null;
+        
     }
 
     /**
@@ -65,11 +66,11 @@ public class Solmu {
      *
      * @param lyhinPolku
      */
-    public void setLyhinPolku(List<Solmu> lyhinPolku) {
+    public void setLyhinPolku(MyLinkedList lyhinPolku) {
         this.lyhinPolku = lyhinPolku;
     }
 
-    public List<Solmu> getLyhinPolku() {
+    public MyLinkedList getLyhinPolku() {
         return this.lyhinPolku;
     }
 

@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import tietorakenteet.MyEntry;
 import tietorakenteet.MyHashSet;
+import tietorakenteet.MyLinkedList;
 import tietorakenteet.Solmu;
 import tietorakenteet.Verkko;
 
@@ -78,7 +79,7 @@ public class Dijkstra {
         Integer lahtoEtaisyys = kasiteltava.getEtaisyys();
         if (lahtoEtaisyys + paino < vierusSolmu.getEtaisyys()){
             vierusSolmu.setEtaisyys(lahtoEtaisyys + paino);
-            LinkedList<Solmu> lyhinPolku = new LinkedList<>(kasiteltava.getLyhinPolku());
+            MyLinkedList lyhinPolku = kasiteltava.getLyhinPolku();
             lyhinPolku.add(kasiteltava);
             vierusSolmu.setLyhinPolku(lyhinPolku);
         }

@@ -11,6 +11,7 @@ import tietorakenteet.MyHashMap;
 import tietorakenteet.MyHashSet;
 import tietorakenteet.Solmu;
 import tietorakenteet.Verkko;
+import tietorakenteet.MyLinkedList;
 
 /**
  *
@@ -38,6 +39,8 @@ public class ReitinhakualgoritmienVertailu {
         D.lisaaVierussolmu(E, 4);
         D.lisaaVierussolmu(F, 8);
         F.lisaaVierussolmu(E, 10);
+        
+
 
         Verkko graph = new Verkko();
         MyHashSet s = new MyHashSet();
@@ -60,25 +63,25 @@ public class ReitinhakualgoritmienVertailu {
         for (Solmu solmu : graph.getSolmut()) {
             System.out.println(solmu.getNimi() + "" + solmu.getEtaisyys());
         }
-        
+
         int[][] t = new int[6][6];
-        for (int i = 0; i < t.length; i++) {
-            for (int j = 0; j < t.length; j++) {
-                t[i][j] = 0;
+        for (int i = 0 ; i < t.length ; i++){
+            for (int j = 0 ; j < t.length ; j++){
+                t[i][j] = 9999;
             }
         }
         t[0][1] = 21;
         t[0][2] = 14;
         t[1][3] = 15;
-        t[1][4] = 12;
+        t[1][5] = 12;
         t[2][4] = 7;
         t[3][4] = 4;
         t[3][5] = 8;
         t[5][4] = 10;
-        floydWarshall(t);
-        for (int i = 0; i < t.length; i++) {
-            for (int j = 0; j < t.length; j++) {
-                System.out.print(t[i][j] + "  ");
+        t = floydWarshall(t);
+        for (int i = 0 ; i < t.length ; i++){
+            for (int j = 0 ; j < t.length ; j++){
+                System.out.print(t[i][j] + "   ");
             }
             System.out.println("");
         }

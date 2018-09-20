@@ -16,16 +16,27 @@ public class MyHashSet {
 //    private int current;
     private int currentSize;
 
+    /**
+     * Oletuskonstruktori HashSetille
+     */
     public MyHashSet() {
         buckets = new Solmu[128];
         currentSize = 0;
     }
 
+    /**
+     * Konstruktori HashSetille, jossa voi valita ämpärien koon.
+     * @param bucketsSize Ämpärien koko.
+     */
     public MyHashSet(int bucketsSize) {
         buckets = new Solmu[bucketsSize];
         currentSize = 0;
     }
-
+    /**
+     * Lisää parametrina annetun solmun HashSettiin. Jos solmu on jo siellä, niin ei lisätä.
+     * @param solmu Lisättävä solmu
+     * @return Palauttaa true jos solmu lisättiin, muuten false
+     */
     public boolean add(Solmu solmu) {
         int bucketIndex = bucketIndexForKey(solmu);
         Solmu s = buckets[bucketIndex];
@@ -33,8 +44,9 @@ public class MyHashSet {
             boolean lisatty = false;
             while (!lisatty) {
                 if (s.equals(solmu)) {
-                    s = solmu;
-                    lisatty = true;
+//                    s = solmu;
+//                    lisatty = true;
+                    return false;
                 } else if (s.getNext() == null) {
                     s.setNext(solmu);
                     lisatty = true;
@@ -52,11 +64,18 @@ public class MyHashSet {
         return true;
     }
 
+    /**
+     * Palauttaa HashSetin alkioiden lukumäärän.
+     * @return HashSetin koko
+     */
     public int size() {
         return currentSize;
     }
-
-    // TODO
+    /**
+     * Tarkastaa onko parametrina annettu solmu HashSetissä
+     * @param solmu Solmu, joka halutaan tarkistaa, että onko se joukossa
+     * @return Jos solmu on HashSetissä, niin palautetaan true, muuten false
+     */
     public boolean contains(Solmu solmu) {
         int bucketIndex = bucketIndexForKey(solmu);
         Solmu s = buckets[bucketIndex];
@@ -71,7 +90,10 @@ public class MyHashSet {
         }
         return false;
     }
-
+    /**
+     * Poistaa parametrina annetun solmun HashSetistä. Jos solmua ei ole HashSetissä, niin mitään ei tapahdu.
+     * @param solmu Poistettava solmu
+     */
     public void remove(Solmu solmu) {
 //        if (solmu == null){
 //            return;
@@ -95,9 +117,12 @@ public class MyHashSet {
             }
             b = true;
         }
-        
-    }
 
+    }
+    /**
+     * Palauttaa HashSetin alkiot 
+     * @return Lista HashSetin alkioista
+     */
     public Solmu[] getSolmut() {
         Solmu[] pal = new Solmu[currentSize];
         int toIndex = 0;
@@ -119,7 +144,7 @@ public class MyHashSet {
         return pal;
     }
 
-    public void kasvata() {
+    private void kasvata() {
         Solmu[] temp = buckets;
         buckets = new Solmu[buckets.length * 2];
         for (int i = 0; i < temp.length; i++) {
@@ -127,7 +152,7 @@ public class MyHashSet {
         }
     }
 
-    public int bucketIndexForKey(Solmu solmu) {
+    private int bucketIndexForKey(Solmu solmu) {
         throwIfKeyIsNull(solmu);
         int bucketIndex = solmu.hashCode() % buckets.length;
         return bucketIndex;

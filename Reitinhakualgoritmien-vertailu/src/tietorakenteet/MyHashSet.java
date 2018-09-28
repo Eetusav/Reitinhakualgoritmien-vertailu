@@ -20,7 +20,7 @@ public class MyHashSet {
      * Oletuskonstruktori HashSetille
      */
     public MyHashSet() {
-        buckets = new Solmu[128];
+        buckets = new Solmu[1024];
         currentSize = 0;
     }
 
@@ -124,7 +124,7 @@ public class MyHashSet {
      * @return Lista HashSetin alkioista
      */
     public Solmu[] getSolmut() {
-        Solmu[] pal = new Solmu[currentSize];
+        Solmu[] pal = new Solmu[1024 + currentSize];
         int toIndex = 0;
         for (int i = 0; i < buckets.length; i++) {
             Solmu s = buckets[i];
@@ -137,11 +137,11 @@ public class MyHashSet {
                 }
             }
         }
-//        Solmu[] pal2 = new Solmu[toIndex];
-//        for (int j = 0 ; j < toIndex ; j++){
-//            pal2[j] = pal[j];
-//        }
-        return pal;
+        Solmu[] pal2 = new Solmu[toIndex];
+        for (int j = 0 ; j < toIndex ; j++){
+            pal2[j] = pal[j];
+        }
+        return pal2;
     }
 
     private void kasvata() {

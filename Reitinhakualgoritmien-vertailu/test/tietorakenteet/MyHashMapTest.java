@@ -71,19 +71,59 @@ public class MyHashMapTest {
         assertEquals(myHashMap.get("a").getNimi(), "b");
         assertEquals(myHashMap.get("a").getEtaisyys(), (Integer) 123);
     }
+
     @Test
-    public void hashMapEntrySetWorks(){
+    public void hashMapEntrySetWorks() {
         MyHashMap<String, Solmu> myHashMap = new MyHashMap<>();
         Solmu a = new Solmu("a");
         a.setEtaisyys(14);
         Solmu b = new Solmu("b");
         b.setEtaisyys(123);
-        myHashMap.put("a",a);
+        myHashMap.put("a", a);
         myHashMap.put("b", b);
         MyEntry<String, Solmu>[] t = myHashMap.entrySet();
-        assertEquals(t[0].getValue(),a);
-        assertEquals(t[1].getValue(),b);
-        
+        assertEquals(t[0].getValue(), a);
+        assertEquals(t[1].getValue(), b);
+
+    }
+
+    @Test
+    public void constructorWorks() {
+        MyHashMap map = new MyHashMap(123);
+        assertEquals(123, map.size());
+    }
+
+    @Test
+    public void puttingTwoIntoSameBucketWorks() {
+        MyHashMap<String, Solmu> myHashMap = new MyHashMap<>(1);
+        Solmu a = new Solmu("a806");
+        a.setEtaisyys(14);
+        Solmu b = new Solmu("a808");
+        b.setEtaisyys(123);
+        myHashMap.put("a806", a);
+        myHashMap.put("a808", b);
+        MyEntry<String, Solmu>[] t = myHashMap.entrySet();
+        assertEquals(t[0].getValue(), a);
+        assertEquals(t[1].getValue(), b);
+    }
+
+    @Test
+    public void gettingSomethingFromBucketThatHasManyObjects() {
+        MyHashMap<String, Solmu> myHashMap = new MyHashMap<>(1);
+        Solmu a = new Solmu("a806");
+        a.setEtaisyys(14);
+        Solmu b = new Solmu("a808");
+        b.setEtaisyys(123);
+        myHashMap.put("a806", a);
+        myHashMap.put("a808", b);
+        assertEquals(myHashMap.get("a806"),a);
+        assertEquals(myHashMap.get("a808"),b);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void puttingSomethingThatIsNull(){
+        MyHashMap<String, Solmu> myHashMap = new MyHashMap<>(1);
+        Solmu a = new Solmu("a806");
+        myHashMap.put(null, a);
     }
 
 }

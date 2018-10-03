@@ -20,7 +20,7 @@ public class MyHashSet {
      * Oletuskonstruktori HashSetille
      */
     public MyHashSet() {
-        buckets = new Solmu[1024];
+        buckets = new Solmu[5000];
         currentSize = 0;
     }
 
@@ -38,6 +38,7 @@ public class MyHashSet {
      * @return Palauttaa true jos solmu lisättiin, muuten false
      */
     public boolean add(Solmu solmu) {
+        throwIfKeyIsNull(solmu);
         int bucketIndex = bucketIndexForKey(solmu);
         Solmu s = buckets[bucketIndex];
         if (s != null) {
@@ -49,8 +50,8 @@ public class MyHashSet {
                     return false;
                 } else if (s.getNext() == null) {
                     s.setNext(solmu);
-                    lisatty = true;
                     currentSize++;
+                    lisatty = true;                    
                 }
                 s.getNext();
             }
@@ -85,7 +86,7 @@ public class MyHashSet {
                 if (s.equals(solmu)) {
                     return true;
                 }
-                s.getNext();
+                s=s.getNext();
             }
         }
         return false;
@@ -124,7 +125,18 @@ public class MyHashSet {
      * @return Lista HashSetin alkioista
      */
     public Solmu[] getSolmut() {
-        Solmu[] pal = new Solmu[1024 + currentSize];
+        int size = 0;
+        for (int i = 0; i < buckets.length; i++) {
+            Solmu s = buckets[i];
+            if (s != null) {
+                size++;
+                while (s.getNext() != null) {
+                    s=s.getNext();
+                    size++;                
+                }
+            }
+        }
+        Solmu[] pal = new Solmu[size];
         int toIndex = 0;
         for (int i = 0; i < buckets.length; i++) {
             Solmu s = buckets[i];
@@ -132,16 +144,13 @@ public class MyHashSet {
                 pal[toIndex] = s;
                 toIndex++;
                 while (s.getNext() != null) {
+                    s=s.getNext();
                     pal[toIndex] = s;
-                    toIndex++;
+                    toIndex++;                 
                 }
             }
         }
-        Solmu[] pal2 = new Solmu[toIndex];
-        for (int j = 0 ; j < toIndex ; j++){
-            pal2[j] = pal[j];
-        }
-        return pal2;
+        return pal;
     }
 
     private void kasvata() {

@@ -98,9 +98,9 @@ public class ReitinhakualgoritmienVertailu {
 //            System.out.println("");
 //        }
         
-        int[][] t = new int[2][2];
-        Verkko graph2 = VG.simpleGraph(220, 5);
-        t = VG.simpleSheet(220, 5);
+        int[][] t;
+        Verkko graph2 = VG.simpleGraph(3000, 5);
+        t = VG.simpleSheet(3000, 5);
         
         
     }

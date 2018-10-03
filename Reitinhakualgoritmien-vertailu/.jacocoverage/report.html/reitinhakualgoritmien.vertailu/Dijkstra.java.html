@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Dijkstra.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Reitinhakualgoritmien-vertailu&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">reitinhakualgoritmien.vertailu</a> &gt; <span class="el_source">Dijkstra.java</span></div><h1>Dijkstra.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package reitinhakualgoritmien.vertailu;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.Set;
+import tietorakenteet.MyEntry;
+import tietorakenteet.MyHashSet;
+import tietorakenteet.MyLinkedList;
+import tietorakenteet.Solmu;
+import tietorakenteet.Verkko;
+
+/**
+ *
+ * @author Matti
+ */
+<span class="nc" id="L22">public class Dijkstra {</span>
+    /**
+     * Dijkstran algoritmi.
+     * @param verkko Verkko, josta lyhimmät polut lasketaan.
+     * @param srcSolmu Solmu, josta lasketaan lyhimmät polut verkon kaikkiin solmuihin.
+     * @return Palautetaan verkko, joka sisältää solmut ja niiden lyhimmät etäisyydet lähtösolmuun (srcSolmu).
+     */
+    public static Verkko dijkstra(Verkko verkko, Solmu srcSolmu){
+        //Alustetaan lähtösolmun etäisyys nollaksi
+<span class="fc" id="L31">        srcSolmu.setEtaisyys(0);</span>
+        
+<span class="fc" id="L33">        MyHashSet kasittelemattomat = new MyHashSet();</span>
+<span class="fc" id="L34">        kasittelemattomat.add(srcSolmu);</span>
+        
+<span class="fc" id="L36">        MyHashSet kasitellyt = new MyHashSet();</span>
+        
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        while(kasittelemattomat.size() &gt; 0){</span>
+            //hae lyhimmällä etäisyydellä oleva solmu ja poistetaan se kasittelemattomista
+<span class="fc" id="L40">            Solmu kasiteltavaSolmu = getSeuraavaKasiteltavaSolmu(kasittelemattomat);</span>
+<span class="fc" id="L41">            kasittelemattomat.remove(kasiteltavaSolmu);</span>
+//            System.out.println(kasiteltavaSolmu.getVierusSolmut().size());
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            for (MyEntry&lt;Solmu,Integer&gt; pari : kasiteltavaSolmu.getVierusSolmut().entrySet()){</span>
+<span class="fc" id="L44">                Solmu vierusSolmu = pari.getKey();</span>
+<span class="fc" id="L45">                Integer paino = pari.getValue();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                if (!kasitellyt.contains(vierusSolmu)){</span>
+<span class="fc" id="L47">                    laskeMinEtaisyys(vierusSolmu, paino, kasiteltavaSolmu);</span>
+<span class="fc" id="L48">                    kasittelemattomat.add(vierusSolmu);</span>
+                }
+            }
+<span class="fc" id="L51">            kasitellyt.add(kasiteltavaSolmu);</span>
+<span class="fc" id="L52">        }</span>
+        
+<span class="fc" id="L54">        return verkko;</span>
+    }
+    /**
+     * Valitsee parametrina annettavan joukon solmuista solmun, jonka etäisyys on lyhin.
+     * @param kasittelemattomat Parametrina annettava joukko solmuja, josta halutaan selvittää solmu, minkä etäisyys on lyhin.
+     * @return Palauttaa lyhimmän etäisyyden omaavan solmun.
+     */
+    public static Solmu getSeuraavaKasiteltavaSolmu(MyHashSet kasittelemattomat){
+<span class="fc" id="L62">        Solmu palautettava = null;</span>
+<span class="fc" id="L63">        int lyhinEtaisyys = Integer.MAX_VALUE;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (Solmu solmu : kasittelemattomat.getSolmut()){</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (solmu.getEtaisyys() &lt; lyhinEtaisyys){</span>
+<span class="fc" id="L66">                lyhinEtaisyys = solmu.getEtaisyys();</span>
+<span class="fc" id="L67">                palautettava = solmu;</span>
+            }
+        }
+<span class="fc" id="L70">        return palautettava;</span>
+    }
+    /**
+     * Jos käsiteltävän solmun ja sen vierussolmun painon summa on pienempi kuin käsiteltävän solmun etäisyys, niin asetetaan vierussolmulle uusi etäisyys ja lyhin polku.
+     * @param vierusSolmu kasiteltävän solmun vierussolmu  
+     * @param paino kasiteltävän solmun ja sen vierussolmun välinen paino
+     * @param kasiteltava kasiteltävä solmu
+     */
+    private static void laskeMinEtaisyys(Solmu vierusSolmu, Integer paino, Solmu kasiteltava){
+<span class="fc" id="L79">        Integer lahtoEtaisyys = kasiteltava.getEtaisyys();</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (lahtoEtaisyys + paino &lt; vierusSolmu.getEtaisyys()){</span>
+<span class="fc" id="L81">            vierusSolmu.setEtaisyys(lahtoEtaisyys + paino);</span>
+<span class="fc" id="L82">            MyLinkedList lyhinPolku = kasiteltava.getLyhinPolku();</span>
+<span class="fc" id="L83">            lyhinPolku.add(kasiteltava);</span>
+<span class="fc" id="L84">            vierusSolmu.setLyhinPolku(lyhinPolku);</span>
+        }
+<span class="fc" id="L86">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

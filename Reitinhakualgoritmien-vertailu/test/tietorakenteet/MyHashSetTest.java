@@ -62,9 +62,10 @@ public class MyHashSetTest {
         set.remove(s1);
         assertFalse(set.contains(s1));
     }
+
     @Test
-    public void getSolmutWorks(){
-        MyHashSet set = new MyHashSet();
+    public void getSolmutWorks() {
+        MyHashSet set = new MyHashSet(1);
         Solmu s1 = new Solmu("a");
         Solmu s2 = new Solmu("b");
         set.add(s1);
@@ -72,6 +73,35 @@ public class MyHashSetTest {
         Solmu[] lista = set.getSolmut();
         assertEquals(lista[0], s1);
         assertEquals(lista[1], s2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void addSomethingThatIsNull() {
+        MyHashSet set = new MyHashSet();
+        Solmu a = null;
+        set.add(a);
+    }
+
+    @Test
+    public void containsSomethingFromBucketWithManyElements() {
+        MyHashSet set = new MyHashSet(1);
+        Solmu s1 = new Solmu("a111");
+        Solmu s2 = new Solmu("b123");
+        set.add(s1);
+        set.add(s2);
+        assertTrue(set.contains(s2));
+        assertTrue(set.contains(s1));
+    }
+
+    @Test
+    public void removingSomethingFromBucketWithManyElements() {
+        MyHashSet set = new MyHashSet(1);
+        Solmu s1 = new Solmu("a111");
+        Solmu s2 = new Solmu("b123");
+        set.add(s1);
+        set.add(s2);
+        set.remove(s2);
+        assertEquals(set.getSolmut().length, 1);
     }
 
 }

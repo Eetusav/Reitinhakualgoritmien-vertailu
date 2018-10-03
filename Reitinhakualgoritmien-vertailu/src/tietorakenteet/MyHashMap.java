@@ -14,7 +14,7 @@ import java.util.HashSet;
  */
 public class MyHashMap<Key, Value> {
 
-    private int BUCKET_COUNT = 10;
+    private int BUCKET_COUNT = 100;
     private int currentSize = 0;
 
     private MyEntry<Key, Value>[] buckets;
@@ -99,6 +99,7 @@ public class MyHashMap<Key, Value> {
                 pal[toIndex] = s;
                 toIndex++;
                 while (s.getNext() != null) {
+                    s=s.getNext();
                     pal[toIndex] = s;
                     toIndex++;
                 }
@@ -111,7 +112,7 @@ public class MyHashMap<Key, Value> {
         return pal2;
     }
     public int size(){
-        return this.size();
+        return this.buckets.length;
     }
 
 }

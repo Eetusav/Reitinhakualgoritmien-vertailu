@@ -15,7 +15,12 @@ import tietorakenteet.Verkko;
  * @author Matti
  */
 public class VerkkoGeneraattori {
-
+    /**
+     * Yksinkertainen työkalu, jolla voi tehdä (suuren) 'jono' omaisen verkon, jolla voi testata nopeasti Dijkstran algoritmin ajankulutusta.
+     * @param size Verkon solmujen lukumäärä
+     * @param etaisyys Mikä etäisyys solmujen välille asetetaan.
+     * @return Palautetaan verkko, joka sisältää solmut ja niiden lyhimmät etäisyydet ensimmäiseen solmuun (a0).
+     */
     public Verkko simpleGraph(int size, int etaisyys) {
         Verkko graph2 = new Verkko();
         Solmu[] lista2 = new Solmu[size];
@@ -70,7 +75,13 @@ public class VerkkoGeneraattori {
         }
         return graph2;
     }
-
+    /**
+     * 
+     * Yksinkertainen työkalu, jolla voi tehdä (suuren) 'jono' omaisen verkon, jolla voi testata nopeasti Floyd-Warshallin algoritmin ajankulutusta.
+     * @param size Verkon solmujen lukumäärä
+     * @param etaisyys Mikä etäisyys solmujen välille asetetaan.
+     * @return Palautetaan verkko, joka sisältää solmut ja niiden lyhimmät etäisyydet kaikkiin muihin solmuihin.
+     */
     public int[][] simpleSheet(int size, int etaisyys) {
         int[][] t = new int[size][size];
         for (int i = 0; i < t.length; i++) {
@@ -90,12 +101,6 @@ public class VerkkoGeneraattori {
         long end = System.nanoTime();
         long microseconds = (end - start) / 1000;
         System.out.println("Floyd Warshall: " + microseconds);
-//        for (int i = 0; i < t.length; i++) {
-//            for (int j = 0; j < t.length; j++) {
-//                System.out.print(t[i][j] + "   ");
-//            }
-//            System.out.println("");
-//        }
         return t;
     }
 }

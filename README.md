@@ -13,3 +13,5 @@ Tiralabra 2018
 [Viikkoraportti 3](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Viikkoraportti%203.md)
 
 [Viikkoraportti 4](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Viikkoraportti%204.md)
+
+[Viikkoraportti 4](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Viikkoraportti%205.md)

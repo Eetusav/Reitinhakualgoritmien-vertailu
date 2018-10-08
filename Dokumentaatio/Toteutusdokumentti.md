@@ -7,11 +7,32 @@ Ohjelman algoritmit sijaitsevat reitinhakualgoritmien.vertailu packagessa, jossa
 sisältää myös algoritmin käyttämät metodit seuraavan käsiteltävän solmun hakuun sekä solmun ja vierussolmun minimi etäisyyden laskemiseen.
 Omat tietorakenteet löytyvät tietorakenteet packagesta.
 
-## Aika- ja tilavaativuus
+Molempien algoritmien toteutus on hyvin tavallinen. Dijkstran algoritmia pystyisi tietysti parannella käyttämällä keko-tietorakennetta.
+
+## Aikavaativuus
+
+Dijkstran algoritmin aikavaativuus on O(V^2), mitä pystyisi parantamaan aikaan O(E log(V)) käyttämällä minimikekoa. Edellä E viittaa kaarien määrään
+ja V viittaa solmujen määrään.
+
+Floyd-Warshall algoritmin aikavaativuus on selvästi kolmen for-lauseen takia O(V^3). Täten toteutettu Dijkstran algoritmi on (ainakin paperilla) Floyd-Warshallia nopeampi.
 
 ## Suorituskyky- ja O-analyysivertailu
 
+Suorituskykyvertailua toteutettiin siten, että tehtiin yksinkertainen verkko (helppo toteuttaa) siten, että valittiin solmujen määrä n ja solmujen välille paino w.
+Tällöin verkko muodostui seuraavanlaiseksi 1-w->2-w->3-w->...-w->n. Tämän jälkeen tarkasteltiin kuinka monta millisekuntia kummallakin algoritmilla kului aikaa. Ehkä vähän yksinkertainen ja tylsä tapa, mutta toimiva.
+
+
+Suorituskykyvertailussa selvisi, että riittävän suurilla verkoilla Dijkstran algoritmi on huomattavasti nopeampi.
+Esimerkiksi solmujen lukumäärällä 3000 (ja painolla 5) Dijkstran algoritmilla kului 18 millisekuntia ja Floyd-Warshallilla kului 12635 millisekunttia. 
+Mikä on uskottava tulos aikavaativuuden kannalta. Tästä lisää testausdokumentissa.
+
 ## Puutteet
+
+Dijkstran algoritmin olisi voinut toteuttaa aikavaativuudeltaan paremmaksi.
+
+Ohjelmasta puuttuu (ainakin vielä) mahdollisuus löydetyn lyhimmän polun printtaamiseen.
+
+Olisi myös ollut kiinnostavaa testata tiheillä verkoilla algoritmeja. Ehkä siihen löytyy vielä aikaa tulevaisuudessa.
 
 ## Lähteet
 

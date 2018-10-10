@@ -33,5 +33,5 @@ Floyd-Warshallin algoritmissa esiintyi jotain vääristymää syötteiden koilla 2500
 
 ![Floyd-Warshall](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/FloydWarshall1.png)
 
-![Tilasto](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Tilasto1.png)
+![Tilasto](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Tilasto1.PNG)
 

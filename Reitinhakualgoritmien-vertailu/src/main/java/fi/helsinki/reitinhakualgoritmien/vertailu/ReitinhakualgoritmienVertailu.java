@@ -101,7 +101,7 @@ public class ReitinhakualgoritmienVertailu {
 //        }
         
         int[][] t;
-        int koko = 2000;
+        int koko = 5000;
         Verkko graph2 = VG.simpleGraph(koko, 5);
         t = VG.simpleSheet(koko, 5);
         

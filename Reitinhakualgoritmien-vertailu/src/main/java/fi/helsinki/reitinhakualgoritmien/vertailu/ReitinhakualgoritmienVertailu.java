@@ -29,7 +29,7 @@ public class ReitinhakualgoritmienVertailu {
 //         TODO code application logic here
         VerkkoGeneraattori VG = new VerkkoGeneraattori();
         Kayttoliittyma ui = new Kayttoliittyma();
-//        Kayttoliittyma.Ui();
+        Kayttoliittyma.Ui();
 //        Solmu A = new Solmu("A");
 //        Solmu B = new Solmu("B");
 //        Solmu C = new Solmu("C");
@@ -100,10 +100,10 @@ public class ReitinhakualgoritmienVertailu {
 //            System.out.println("");
 //        }
         
-        int[][] t;
-        int koko = 5000;
-        Verkko graph2 = VG.simpleGraph(koko, 5);
-        t = VG.simpleSheet(koko, 5);
+//        int[][] t;
+//        int koko = 5000;
+//        Verkko graph2 = VG.simpleGraph(koko, 5);
+//        t = VG.simpleSheet(koko, 5);
         
         
     }

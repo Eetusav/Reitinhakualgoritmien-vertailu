@@ -35,7 +35,7 @@ public class VerkkoGeneraattori {
         for (int i = 0; i < size; i++) {
             graph2.lisaaSolmu(lista2[i]);
         }
-        System.out.println("Timestamp here");
+//        System.out.println("Timestamp here");
         Solmu A = lista2[0];
 //        System.out.println("Timestamp here");
         long start = System.nanoTime();

@@ -1,7 +1,7 @@
-MyLinkedListTest.class
-SolmuTest.class
-MyHashSetTest.class
+tietorakenteet\MyHashSetTest.class
+tietorakenteet\SolmuTest.class
 reitinhakualgoritmit\DijkstraTest.class
-test\java\tietorakenteet\VerkkoTest.class
-MyHashMapTest.class
+tietorakenteet\MyHashMapTest.class
 reitinhakualgoritmit\FloydWarshallTest.class
+tietorakenteet\VerkkoTest.class
+tietorakenteet\MyLinkedListTest.class

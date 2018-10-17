@@ -53,14 +53,14 @@ public class MyHashSet {
                     currentSize++;
                     lisatty = true;                    
                 }
-                s.getNext();
+                s= s.getNext();
             }
         } else {
             buckets[bucketIndex] = solmu;
             currentSize++;
         }
         if (currentSize > (buckets.length * 0.75)) {
-            kasvata();
+//            kasvata();
         }
         return true;
     }
@@ -96,9 +96,6 @@ public class MyHashSet {
      * @param solmu Poistettava solmu
      */
     public void remove(Solmu solmu) {
-//        if (solmu == null){
-//            return;
-//        }
         int bucketIndex = bucketIndexForKey(solmu);
         Solmu s = buckets[bucketIndex];
         if (s.equals(solmu)) {
@@ -114,7 +111,7 @@ public class MyHashSet {
                     b = true;
                     currentSize--;
                 }
-                s.getNext();
+                s=s.getNext();
             }
             b = true;
         }
@@ -152,7 +149,9 @@ public class MyHashSet {
         }
         return pal;
     }
-
+    /**
+     * Kasvattaa MyHashSetin ämpärien määrää.
+     */
     private void kasvata() {
         Solmu[] temp = buckets;
         buckets = new Solmu[buckets.length * 2];
@@ -160,7 +159,11 @@ public class MyHashSet {
             buckets[i] = temp[i];
         }
     }
-
+    /**
+     * Laskee avainta vastaavan ämpäri-indeksin
+     * @param solmu Avain, jota vastaava indeksi halutaan hakea.
+     * @return Palautettava indeksi
+     */
     private int bucketIndexForKey(Solmu solmu) {
         throwIfKeyIsNull(solmu);
         int bucketIndex = solmu.hashCode() % buckets.length;

@@ -12,7 +12,7 @@ Molempien algoritmien kattavuus saatiin 100%:iin, joten ne ovat ok.
 
 ### Tietorakenteet
 
-Myös tietorakenteet ovat testattu kattavasti. Ainoana puutteena on MyLinkedListin testaus, sillä luokka ei sisällä (vielä) mitään gettereita yms.
+Myös tietorakenteet ovat testattu kattavasti. Ainoana puutteena on MyLinkedListin testaus, sillä luokka ei sisällä (vielä) mitään gettereita yms. MyHashSetin koodikattavuus on 0%, sillä sitä ei käytetä ohjelmassa, joten sitä ei ole tarpeellista testata.
 
 ### Utiliteetit
 
@@ -27,9 +27,22 @@ y-akselin skaalautuvuus. Dijkstran algoritmissa saatiin arvoja 1-25 millisekunni
 otoksen (sama syöte) keskiarvo.
 
 Dijkstran algoritmin ajankulutuksen kasvu syötteen kasvaessa näyttää erittäin maltilliselta. Floyd-Warshallin algoritmin ajankulutus taas näyttää mallintavan eksponentiaalista kasvua ja ajankulutus suorastaan räjähtää syötteen koon kasvaessa.
-Floyd-Warshallin algoritmissa esiintyi jotain vääristymää syötteiden koilla 2500-3000, muuten kasvu esitti eksponentiaalista mallia. En osaa sanoa johtuiko virhe tavallisesta varianssista vai koneen lagista vai mistä.
+Floyd-Warshallin algoritmissa esiintyi jotain vääristymää syötteiden koilla 2500-3000, muuten kasvu esitti eksponentiaalista mallia. En osaa sanoa johtuiko virhe tavallisesta varianssista vai koneen lagista vai tekeekö Java jotain omia taikojaan taustalla. Todennäköisesti viimeisimmästä. 
+
+Tämän lisäksi jälkeenpäin tehtiin manuaalista testausta tiheällä verkolla, vastaavalla tavalla kuin yllä. Tiheä verkko muodostui siten, että jokaisesta solmusta menee kaari kaikkiin muihin solmuihin. Tällöin Dijkstran algoritmi ei enää
+näyttänyt enää niin maltillista kasvua, mutta kuitenkin vielä Floyd-Warshallia nopeampi. Kasvu näyttää lineaariselta, mutta olisin kylläkin odottanut pikemminkin eksponentiaalista kasvua. On oletettavaa, että verkon tiheydellä ei ole vaikutusta Floyd-Warshallin algoritmin ajankulutukseen, joten sitä ei ole testattu.
+
+### Johtopäätöksiä
+
+Jos halutaan löytää lyhimmät polut vain yhdestä solmusta, niin tällöin Dijkstran algoritmi on aina parempi vaihtoehto, myös tiheillä verkoilla. Jos halutaan löytää kaikista solmuista lyhimmät polut, niin usein on parempi valita Floyd-Warhsallin algoritmi. 
+Verkossa, jossa kaarien lukumäärä ei ole kovin suuri, Floyd-Warshallin ja Dijkstran käyttämän ajan suhde näyttää olevan riippuvainen syötteen koosta. Hieman yksinkertaisesti ajatellen, jos kertoo Dijkstran käyttämän ajan syötteen koolla (eli etsitään kaikkien solmujen lyhimmät polut), niin tulos 
+on aina Floyd-Warshallin käyttämää aikaa suurempi. Tämä johtunee siitä, että Dijkstrassa suoritetaan enemmän vakioaikaisia operaatioita kuin Floyd-Warshallissa. Jos verkko on tiheä, niin tämä tulos korostuu vielä enemmän. Täten on järkevää ajatella, että kaikkien solmujen lyhimpien polkujen etsimiseen
+Floyd-Warshall on nopeampi valinta.
+
 
 ![Dijkstra](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/Dijkstra1.png)
+
+![Dijkstra](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/DijkstraDense.png)
 
 ![Floyd-Warshall](https://github.com/Eetusav/Reitinhakualgoritmien-vertailu/blob/master/Dokumentaatio/FloydWarshall1.png)
 

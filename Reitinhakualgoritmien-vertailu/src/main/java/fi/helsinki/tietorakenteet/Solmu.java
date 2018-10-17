@@ -69,7 +69,10 @@ public class Solmu {
     public void setLyhinPolku(MyLinkedList lyhinPolku) {
         this.lyhinPolku = lyhinPolku;
     }
-
+    /**
+     * Palauttaa lyhimmän polun
+     * @return Palautettava lyhin polku
+     */
     public MyLinkedList getLyhinPolku() {
         return this.lyhinPolku;
     }

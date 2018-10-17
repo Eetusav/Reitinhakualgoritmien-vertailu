@@ -11,10 +11,10 @@ Molempien algoritmien toteutus on hyvin tavallinen. Dijkstran algoritmia pystyis
 
 ## Aikavaativuus
 
-Dijkstran algoritmin aikavaativuus on O(V^2), mitä pystyisi parantamaan aikaan O(E log(V)) käyttämällä minimikekoa. Edellä E viittaa kaarien määrään
+Dijkstran algoritmin aikavaativuus on O(V(V+E)), mitä pystyisi parantamaan aikaan O(E log(V)) käyttämällä minimikekoa. Edellä E viittaa kaarien määrään
 ja V viittaa solmujen määrään.
 
-Floyd-Warshall algoritmin aikavaativuus on selvästi kolmen for-lauseen takia O(V^3). Täten toteutettu Dijkstran algoritmi on (ainakin paperilla) Floyd-Warshallia nopeampi.
+Floyd-Warshall algoritmin aikavaativuus on selvästi kolmen for-lauseen takia O(V^3). Täten toteutettu Dijkstran algoritmi on Floyd-Warshallia nopeampi verkoilla, joissa kaarien lukumäärä ei ole valtava.
 
 ## Suorituskyky- ja O-analyysivertailu
 
@@ -24,7 +24,9 @@ Tällöin verkko muodostui seuraavanlaiseksi 1-w->2-w->3-w->...-w->n. Tämän jälkee
 
 Suorituskykyvertailussa selvisi, että riittävän suurilla verkoilla Dijkstran algoritmi on huomattavasti nopeampi.
 Esimerkiksi solmujen lukumäärällä 3000 (ja painolla 5) Dijkstran algoritmilla kului 18 millisekuntia ja Floyd-Warshallilla kului 12635 millisekunttia. 
-Mikä on uskottava tulos aikavaativuuden kannalta. Tästä lisää testausdokumentissa.
+Mikä on uskottava tulos aikavaativuuden kannalta. Jälkeen päin lisättiin myös Dijkstran algoritmille aikavaativuustarkastelu, kun tutkittavana oli tiheitä verkkoja. Tästä lisää testausdokumentissa.
+
+Täytyy tietysti muistaa, että Dijkstran algoritmi mahdollistaa vain lyhimpien polkujen etsimiseen lähtösolmusta (eli yhdestä solmusta), kun taas Floyd-Warshall tarjoaa kaikkien polkujen löytymisen.
 
 ## Puutteet
 
@@ -32,7 +34,6 @@ Dijkstran algoritmin olisi voinut toteuttaa aikavaativuudeltaan paremmaksi.
 
 Ohjelmasta puuttuu (ainakin vielä) mahdollisuus löydetyn lyhimmän polun printtaamiseen.
 
-Olisi myös ollut kiinnostavaa testata tiheillä verkoilla algoritmeja. Ehkä siihen löytyy vielä aikaa tulevaisuudessa.
 
 ## Lähteet
 

@@ -5,7 +5,7 @@ Tavoitteena on vertailla paria reitinhakualgoritmia ja tutkia minkäläisia eroj
 kaksi algoritmia, jolla on selvästi eri aikavaativuudet, jotta saataisiin eroavia tuloksia ulos. 
 Valitut algoritmit: 
 * Floyd-Warshall, joka etsii lyhimmän polujen kaikkien solmuparien välille. O(|V|^{3})
-* Dijkstra, joka lähtösolmusta etsii lyhimmän polun kaikkiin muihin solmuihin. O((|E|+|V|)log|V|)
+* Dijkstra, joka lähtösolmusta etsii lyhimmän polun kaikkiin muihin solmuihin. O((|E|+|V|)log|V|). (Toteutettu O((|E|+|V|)|V|)
 
 Tietorakenteina toteutetaan kyseisiin algoritemihin tarvittavat tietorakenteet, esim keko.
 Ohjelmaan voi antaa erilaisia syötteitä, jotka vaikuttavat siihen minkälaista verkkoa tutkitaan.

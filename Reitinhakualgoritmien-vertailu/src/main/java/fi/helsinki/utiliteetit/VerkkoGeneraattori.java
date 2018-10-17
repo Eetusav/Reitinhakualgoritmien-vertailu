@@ -48,19 +48,24 @@ public class VerkkoGeneraattori {
 //        }
         return graph2;
     }
-
+    /**
+     * Yksinkertainen työkalu, jolla voi tehdä (suuren) tiheän verkon, jolla voi testata nopeasti Dijkstran algoritmin ajankulutusta.
+     * @param size Verkon solmujen lukumäärä
+     * @param etaisyys Mikä etäisyys solmujen välille asetetaan.
+     * @return Palautetaan verkko, joka sisältää solmut ja niiden lyhimmät etäisyydet ensimmäiseen solmuun (a0).
+     */
     public Verkko thickGraph(int size, int etaisyys) {
         Verkko graph2 = new Verkko();
         Solmu[] lista2 = new Solmu[size];
         for (int i = 0; i < size; i++) {
             lista2[i] = new Solmu("a" + i);
         }
-
+//        etaisyys = (int) Math.floor(Math.random() * 100) + 1;
         for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size; j++) {
-                if (lista2[i] != lista2[j]) {
+            for (int j = 0; j < size-1; j++) {
+                if (j != i) {
                     lista2[i].lisaaVierussolmu(lista2[j], etaisyys);
-                }
+                } 
             }
         }
         for (int i = 0; i < size; i++) {
@@ -71,10 +76,7 @@ public class VerkkoGeneraattori {
         graph2 = Dijkstra.dijkstra(graph2, A);
         long end = System.nanoTime();
         long milliseconds = (end - start) / 1000000;
-        System.out.println("Dijkstra: " + milliseconds + " ms");
-        for (Solmu solmu : graph2.getSolmut()) {
-            System.out.println("Nimi: " + solmu.getNimi() + " ja Etäisyys: " + solmu.getEtaisyys());
-        }
+        System.out.println("Dijkstra tiheällä verkolla: " + milliseconds + " ms");
         return graph2;
     }
     /**

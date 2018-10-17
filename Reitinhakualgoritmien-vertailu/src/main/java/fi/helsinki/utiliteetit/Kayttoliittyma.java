@@ -28,6 +28,7 @@ public class Kayttoliittyma {
                 int[][] t;
                 Verkko graph2 = VG.simpleGraph(koko, etaisyys);
                 t = VG.simpleSheet(koko, etaisyys);
+                Verkko graph3 = VG.thickGraph(koko, etaisyys);
             } else if (line.equals("lopeta")) {
                 return;
             } else {

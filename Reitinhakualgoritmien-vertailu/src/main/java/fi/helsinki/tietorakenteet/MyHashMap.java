@@ -5,8 +5,7 @@
  */
 package fi.helsinki.tietorakenteet;
 
-//import java.util.Map;
-import java.util.HashSet;
+
 
 /**
  *
@@ -14,19 +13,28 @@ import java.util.HashSet;
  */
 public class MyHashMap<Key, Value> {
 
-    private int BUCKET_COUNT = 100;
+    private int BUCKET_COUNT = 10000;
     private int currentSize = 0;
 
     private MyEntry<Key, Value>[] buckets;
-
+    /**
+     * Oletus konstruktori MyHashMapille
+     */
     public MyHashMap() {
         buckets = new MyEntry[BUCKET_COUNT];
     }
-
+    /**
+     * Konstruktori MyHashMapille, jossa voi valita ämpärien koon.
+     * @param size Ämpärien koko
+     */
     public MyHashMap(int size) {
         buckets = new MyEntry[size];
     }
-
+    /**
+     * Palauttaa parametrina annettua avainta vastaavan arvon MyHashMapista.
+     * @param solmu Avain, jota vastaava arvo halutaan hakea
+     * @return Avainta vastaava arvo
+     */
     public Value get(Key solmu) {
         throwIfKeyIsNull(solmu);
         MyEntry<Key, Value> entry = buckets[bucketIndexForKey(solmu)];
@@ -38,7 +46,11 @@ public class MyHashMap<Key, Value> {
         }
         return null;
     }
-
+    /**
+     * Lisää avain-arvo parin MyHashMappiin
+     * @param nimi Avain, joka halutaan lisätä
+     * @param solmu Arvo, joka halutaan lisätä
+     */
     public void put(Key nimi, Value solmu) {
         throwIfKeyIsNull(nimi);
         int bucketIndex = bucketIndexForKey(nimi);
@@ -48,20 +60,23 @@ public class MyHashMap<Key, Value> {
             while (!lisatty) {
                 if (nimi.equals(entry.getKey())) {
                     entry.setValue(solmu);
-                    currentSize++;
                     lisatty = true;
                 } else if (entry.getNext() == null) {
                     entry.setNext(new MyEntry<Key, Value>(nimi, solmu));
                     currentSize++;
                     lisatty = true;
                 }
-                entry.getNext();
+                entry = entry.getNext();
             }
         } else {
             buckets[bucketIndex] = new MyEntry<Key, Value>(nimi, solmu);
         }
     }
-
+    /**
+     * Laskee avainta vastaavan ämpäri-indeksin
+     * @param solmu Avain, jota vastaava indeksi halutaan hakea.
+     * @return palautettava indeksi
+     */
     public int bucketIndexForKey(Key solmu) {
         int bucketIndex = solmu.hashCode() % buckets.length;
         return bucketIndex;
@@ -72,26 +87,24 @@ public class MyHashMap<Key, Value> {
             throw new IllegalArgumentException("Solmu ei saa olla null");
         }
     }
-
-//    public HashSet<MyEntry<Key, Value>> entrySet() {
-//        HashSet<MyEntry<Key, Value>> set = new HashSet<>();
-//        for (int i = 0; i < buckets.length; i++) {
-//            MyEntry<Key, Value> entry = buckets[i];
-//            if (entry != null) {
-//                set.add(entry);
-//                while (entry.getNext() != null) {
-//                    entry = entry.getNext();
-//                    set.add(entry);
-//                }
-//            }
-//        }
-//        return set;
-//    }
+    
+    /**
+     * Palauttaa MyHashMapin sisältämät alkiot taulukkona.
+     * @return MyHashMapin sisätämät alkiot taulukkona
+     */
     public MyEntry<Key, Value>[] entrySet() {
-        MyEntry<Key, Value>[] pal;
-        // TODO: sizing problem
-        pal = new MyEntry[1024 + currentSize];
-//        System.out.println(currentSize);
+        int size = 0;
+        for (int i = 0; i < buckets.length; i++) {
+            MyEntry s = buckets[i];
+            if (s != null) {
+                size++;
+                while (s.getNext() != null) {
+                    s = s.getNext();
+                    size++;
+                }
+            }
+        }
+        MyEntry[] pal = new MyEntry[size];
         int toIndex = 0;
         for (int i = 0; i < buckets.length; i++) {
             MyEntry s = buckets[i];
@@ -99,19 +112,20 @@ public class MyHashMap<Key, Value> {
                 pal[toIndex] = s;
                 toIndex++;
                 while (s.getNext() != null) {
-                    s=s.getNext();
+                    s = s.getNext();
                     pal[toIndex] = s;
                     toIndex++;
                 }
             }
         }
-        MyEntry<Key,Value>[] pal2 = new MyEntry[toIndex];
-        for (int j = 0; j < toIndex; j++) {
-            pal2[j] = pal[j];
-        }
-        return pal2;
+        return pal;
     }
-    public int size(){
+    
+    /**
+     * Palauttaa ämpärien lukumäärän
+     * @return ämpärien lukumäärä
+     */
+    public int size() {
         return this.buckets.length;
     }
 

@@ -7,7 +7,7 @@ Valitut algoritmit:
 * Floyd-Warshall, joka etsii lyhimmän polujen kaikkien solmuparien välille. O(|V|^{3})
 * Dijkstra, joka lähtösolmusta etsii lyhimmän polun kaikkiin muihin solmuihin. O((|E|+|V|)log|V|). (Toteutettu O((|E|+|V|)|V|)
 
-Tietorakenteina toteutetaan kyseisiin algoritemihin tarvittavat tietorakenteet, esim keko.
+Tietorakenteina toteutetaan kyseisiin algoritemihin tarvittavat tietorakenteet, esim HashMap.
 Ohjelmaan voi antaa erilaisia syötteitä, jotka vaikuttavat siihen minkälaista verkkoa tutkitaan.
 Tavoitteena tietysti saavuttaa algoritmeille määritellyt aikavaativuudet ja lisäksi saada selvä ero algoritmien välileillä erilaisilla syötteillä.
 Pääasiallisena lähteenä käytetään Tietorakenteet ja algoritmit-kurssin materiaalia.
